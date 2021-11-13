@@ -1,0 +1,36 @@
+table {
+    background-color: rgba(230, 222, 163, 0.685); 
+}
+label {
+    margin-right: 10px;
+    margin-top: 12px;
+}
+input {
+    margin-right: 30px;
+}
+button {
+    margin: 5px 20px 5px 0px;
+}
+select {
+    margin-right: 20px;
+    width: 140px;
+}
+.sort{
+    margin: 20px 0px;
+}
+option{
+    text-align: left;
+    background-color: white;
+    color: black 
+}
+h3{
+    margin-top: 15px;
+}
+.sortName{
+    font-size: 17px;
+}
+#horse{
+    width: 180px;
+    height: 30px;
+
+}

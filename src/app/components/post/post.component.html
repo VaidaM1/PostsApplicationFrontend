@@ -1,0 +1,37 @@
+<h3>Posts:</h3>
+  
+   <table class="table">
+      <tr>
+        <th>Town</th>
+        <th>Post code</th>
+        <th>Capacity</th>
+        <th>Actions:</th>
+      </tr>
+  
+        <tr *ngFor="let post of posts">
+            <td>{{post.town}}</td>
+            <td>{{post.code}}</td>
+            <td>{{post.capacity}}</td>
+
+            <button type="button" class="btn btn-outline-secondary" 
+            (click)="updatePost(post)">Update</button>
+             <button type="button" class="btn btn-outline-danger" 
+            (click)="deletePost(post.id)">Delete</button>
+        </tr>
+    </table> 
+
+    <form #postForm="ngForm">
+      <div>
+      <label for="town">Town</label>
+      <input  id="town" type="text" [(ngModel)] ="town" name="town">
+      <label for="code">Post code</label>
+      <input  id="code" type="text"  [(ngModel)] ="code" name="code">
+        
+      <label for="capacity">Capacity</label>
+      <input  id="capacity" type="text"  [(ngModel)] ="capacity" name="capacity">
+
+         
+        <button type="button" *ngIf="!editMode" class="btn btn-outline-secondary" (click)="addPost(); postForm.resetForm()">Add new post</button>
+        <button type="button" *ngIf="editMode" class="btn btn-outline-primary" (click)="sendUpdatedPost(); postForm.resetForm()">Save changes</button>
+      </div>
+      </form> 

@@ -1,0 +1,61 @@
+<h3>Parcels:</h3>
+
+<div class="sort">
+<label class="sortName">Filter parcels by post:</label>
+        <select class="btn btn-secondary dropdown-toggle" [(ngModel)]="postSelected" (ngModelChange)="onPostSelected($event)">
+            <option [value]="0">All</option>
+            <option  *ngFor="let post of posts"  [value]="post.id">
+                {{post.code}}
+            </option>
+          </select>
+ </div>
+
+<table class="table">
+    <tr>
+      <th>Recipient</th>
+      <th>Parcel weight</th>
+      <th>Phone number</th>
+      <th>Aditional information</th>
+      <th>Choose post</th>
+      <th>Actions:</th>
+    </tr>
+
+      <tr *ngFor="let parcel of parcels">
+          <td>{{parcel.fullName}}</td>
+          <td>{{parcel.weight  | number:'1.2-2'}}</td>
+          <td>{{parcel.phone}}</td>
+          <td>{{parcel.info}}</td>
+          <td>{{parcel.post?.town}}</td>
+          
+          <button type="button" class="btn btn-outline-secondary" 
+          (click)="updateParcel(parcel)">Update</button>
+          <button type="button" class="btn btn-outline-danger" 
+          (click)="deleteParcel(parcel.id)">Delete</button>
+      </tr>
+</table> 
+
+        <form #parcelForm="ngForm">
+        <div>
+        <label for="fullName">Recipient</label>
+        <input id="fullName" type="text" [(ngModel)] ="fullName" name="fullName">
+        <label for="weight">Weight</label>
+        <input  id="weight" type="text"  [(ngModel)] ="weight" name="weight">
+        
+        <label for="phone">Phone number</label>
+        <input  id="phone" type="text"  [(ngModel)] ="phone" name="phone">
+      </div>
+        <div>  
+        <label for="info">Aditional information</label>
+        <input  id="info" type="text"  [(ngModel)] ="info" name="info">
+        
+        <label for="post">Post office</label>
+        <select id="post" [(ngModel)]="postId" name="post">
+          <option *ngFor="let post of posts" [ngValue]="post.id">
+            {{post.town}}
+          </option>
+        </select> 
+        
+        <button type="button" *ngIf="!editMode" class="btn btn-outline-secondary" (click)="addParcel(); parcelForm.resetForm()">Add new parcel</button>
+        <button type="button" *ngIf="editMode" class="btn btn-outline-primary" (click)="sendUpdatedParcel(); parcelForm.resetForm()">Save changes</button>
+      </div>
+      </form>
